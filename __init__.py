@@ -19,7 +19,6 @@ $Id$
 """
 __docformat__ = 'restructuredtext'
 
-
 from persistent import Persistent
 from zodbcode.patch import registerWrapper, Wrapper, NameFinder
 
@@ -42,7 +41,6 @@ class PersistentInterfaceClass(Persistent, InterfaceClass):
 # zodb.code to support interfaces in persistent modules.
 PersistentInterface = PersistentInterfaceClass("PersistentInterface",
                                                (Interface, ))
-
 
 class PersistentInterfaceWrapper(Wrapper):
 

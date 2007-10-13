@@ -17,13 +17,12 @@ $Id$
 """
 __docformat__ = 'restructuredtext'
 
-from gc import collect
-
 import unittest
 
-from persistent import Persistent
+from gc import collect
 
 import transaction
+from persistent import Persistent
 
 from ZODB.tests.util import DB
 from zodbcode.module import ManagedRegistry
@@ -62,7 +61,7 @@ class IBlah(IBaz): pass
 
 provide_iface_code = """\
 from zope.interface import Interface
-from zope.component.interface import provideInterface
+from zope.app.component.interface import provideInterface
 from zope.app.interface.tests.test_interface import IBarInterface
 
 class IBar(Interface): pass
@@ -80,10 +79,8 @@ class IQux(Interface): pass
 class PersistentInterfaceTest(unittest.TestCase):
 
     def setUp(self):
-
         self.db = DB()
-        self.conn = self.db.open()
-        self.root = self.conn.root()
+        self.root = self.db.open().root()
         self.registry = ManagedRegistry()
         self.root["registry"] = self.registry
         transaction.commit()
